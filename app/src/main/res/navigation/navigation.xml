@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/createShoeFragment"
+        android:name="com.udacity.shoestore.CreateShoeFragment"
+        android:label="fragment_create_shoe"
+        tools:layout="@layout/fragment_create_shoe" >
+        <action
+            android:id="@+id/action_createShoeFragment_to_showListFragment"
+            app:destination="@id/showListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.udacity.shoestore.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_wellcomFragment"
+            app:destination="@id/wellcomFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/wellcomFragment"
+        android:name="com.udacity.shoestore.WellcomFragment"
+        android:label="fragment_wellcom"
+        tools:layout="@layout/fragment_wellcom" >
+        <action
+            android:id="@+id/action_wellcomFragment_to_instructionFragment"
+            app:destination="@id/instructionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/instructionFragment"
+        android:name="com.udacity.shoestore.InstructionFragment"
+        android:label="fragment_instruction"
+        tools:layout="@layout/fragment_instruction" >
+        <action
+            android:id="@+id/action_instructionFragment_to_showListFragment"
+            app:destination="@id/showListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/showListFragment"
+        android:name="com.udacity.shoestore.ShowListFragment"
+        android:label="fragment_show_list"
+        tools:layout="@layout/fragment_show_list" >
+        <action
+            android:id="@+id/action_showListFragment_to_createShoeFragment"
+            app:destination="@id/createShoeFragment" />
+        <action
+            android:id="@+id/action_showListFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+</navigation>
