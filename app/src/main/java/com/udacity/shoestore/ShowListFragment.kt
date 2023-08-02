@@ -1,5 +1,6 @@
 package com.udacity.shoestore
 
+import android.content.ClipData.Item
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -40,7 +42,11 @@ class ShowListFragment : Fragment() {
         viewModel.shoes.observe(viewLifecycleOwner, Observer { shoeList->
             if(!shoeList.isNullOrEmpty()){
                 shoeList.forEach{item->
-
+                    val itemView = ItemView(context)
+                    itemView.setItem(item.name,item.company,item.size,item.description)
+                    itemView.layoutParams=LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT)
+                    val listLayout: LinearLayout= binding.viewShoeList
+                    listLayout.addView(itemView)
                 }
             }
         })

@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.udacity.shoestore.databinding.FragmentCreateShoeBinding
+import com.udacity.shoestore.models.Shoe
 
 /**
  * A simple [Fragment] subclass.
@@ -16,6 +18,7 @@ import com.udacity.shoestore.databinding.FragmentCreateShoeBinding
  */
 class CreateShoeFragment : Fragment() {
 
+    lateinit var viewModel : ShoeListViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,7 +28,12 @@ class CreateShoeFragment : Fragment() {
             inflater, R.layout.fragment_create_shoe, container, false
         )
 
+        viewModel= ViewModelProvider(requireActivity()).get(ShoeListViewModel::class.java)
+
         binding.buttonSave.setOnClickListener { view: View ->
+
+            //TODO get from ui
+            viewModel.addShoe(Shoe("name",20.0,"com","desc"))
             Navigation.findNavController(view)
                 .navigate(R.id.action_createShoeFragment_to_showListFragment)
         }
