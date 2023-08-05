@@ -17,6 +17,8 @@ import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.udacity.shoestore.databinding.FragmentShowListBinding
+import java.util.logging.Level
+import java.util.logging.Logger
 
 
 /**
@@ -64,8 +66,8 @@ class ShowListFragment : Fragment() {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.menu, menu)
     }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        Logger.getLogger("da").log(Level.ALL,item.toString())
         return NavigationUI.onNavDestinationSelected(item, requireView().findNavController())
                 || super.onOptionsItemSelected(item)
     }

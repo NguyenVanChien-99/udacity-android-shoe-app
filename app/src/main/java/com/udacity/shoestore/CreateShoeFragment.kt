@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -31,17 +32,29 @@ class CreateShoeFragment : Fragment() {
         viewModel= ViewModelProvider(requireActivity()).get(ShoeListViewModel::class.java)
 
         binding.buttonSave.setOnClickListener { view: View ->
-
-            //TODO get from ui
-            viewModel.addShoe(Shoe("name",20.0,"com","desc"))
-            Navigation.findNavController(view)
-                .navigate(R.id.action_createShoeFragment_to_showListFragment)
+            addShoe(binding,view)
         }
         binding.buttonCancle.setOnClickListener { view: View ->
             Navigation.findNavController(view)
                 .navigate(R.id.action_createShoeFragment_to_showListFragment)
         }
         return binding.root
+    }
+
+    fun addShoe(binding: FragmentCreateShoeBinding,view: View){
+
+        //TODO get from ui
+        if (binding.editShoeName.text.toString().isEmpty()){
+            Toast.makeText(this.context,"Shoe name is required",Toast.LENGTH_LONG).show()
+            return
+        }
+        if (binding.editCompanyName.text.toString().isEmpty()){
+            Toast.makeText(this.context,"Company name is required",Toast.LENGTH_LONG).show()
+            return
+        }
+        viewModel.addShoe(Shoe(binding.editShoeName.text.toString(),binding.editSize.text.toString().toDouble(),binding.editCompanyName.text.toString()   ,binding.editDescription.text.toString()))
+        Navigation.findNavController(view)
+            .navigate(R.id.action_createShoeFragment_to_showListFragment)
     }
 
 }

@@ -45,6 +45,6 @@ class LoginFragment : Fragment() {
             Toast.makeText(context, "Invalid email or password", Toast.LENGTH_LONG).show()
             return
         }
-        Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_wellcomFragment)
+        Navigation.findNavController(view).navigate(LoginFragmentDirections.actionLoginFragmentToWellcomFragment(email))
     }
 }

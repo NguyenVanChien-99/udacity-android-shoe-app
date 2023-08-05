@@ -12,7 +12,9 @@
         tools:layout="@layout/fragment_create_shoe" >
         <action
             android:id="@+id/action_createShoeFragment_to_showListFragment"
-            app:destination="@id/showListFragment" />
+            app:destination="@id/showListFragment"
+            app:popUpTo="@id/instructionFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -31,6 +33,9 @@
         <action
             android:id="@+id/action_wellcomFragment_to_instructionFragment"
             app:destination="@id/instructionFragment" />
+        <argument
+            android:name="Username"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/instructionFragment"
@@ -51,6 +56,8 @@
             app:destination="@id/createShoeFragment" />
         <action
             android:id="@+id/action_showListFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

@@ -24,6 +24,10 @@ class WellcomFragment : Fragment() {
         val binding: FragmentWellcomBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_wellcom, container, false
         )
+
+        val agrs = WellcomFragmentArgs.fromBundle(requireArguments())
+        binding.textUserEmail.setText(agrs.username)
+
         binding.buttonInstruction.setOnClickListener {
                 view:View-> Navigation.findNavController(view).navigate(R.id.action_wellcomFragment_to_instructionFragment)
         }
