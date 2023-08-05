@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.udacity.shoestore.databinding.FragmentCreateShoeBinding
@@ -19,7 +20,7 @@ import com.udacity.shoestore.models.Shoe
  */
 class CreateShoeFragment : Fragment() {
 
-    lateinit var viewModel : ShoeListViewModel
+    val viewModel: ShoeListViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,7 +30,7 @@ class CreateShoeFragment : Fragment() {
             inflater, R.layout.fragment_create_shoe, container, false
         )
 
-        viewModel= ViewModelProvider(requireActivity()).get(ShoeListViewModel::class.java)
+//        viewModel= ViewModelProvider(requireActivity()).get(ShoeListViewModel::class.java)
 
         binding.buttonSave.setOnClickListener { view: View ->
             addShoe(binding,view)
@@ -52,7 +53,13 @@ class CreateShoeFragment : Fragment() {
             Toast.makeText(this.context,"Company name is required",Toast.LENGTH_LONG).show()
             return
         }
-        viewModel.addShoe(Shoe(binding.editShoeName.text.toString(),binding.editSize.text.toString().toDouble(),binding.editCompanyName.text.toString()   ,binding.editDescription.text.toString()))
+
+        var size:Double=0.0
+        if( binding.editSize.text.toString().isNotEmpty()){
+            size=binding.editSize.text.toString().toDouble()
+        }
+
+        viewModel.addShoe(Shoe(binding.editShoeName.text.toString(),size,binding.editCompanyName.text.toString()   ,binding.editDescription.text.toString()))
         Navigation.findNavController(view)
             .navigate(R.id.action_createShoeFragment_to_showListFragment)
     }
