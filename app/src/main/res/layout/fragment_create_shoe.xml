@@ -4,6 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".CreateShoeFragment">
 
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.udacity.shoestore.ShoeListViewModel" />
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -38,6 +45,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Shoe name"
+            android:text="@={viewModel.shoeName}"
             android:minHeight="48dp"
             android:inputType="text" />
 
@@ -54,6 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:text="@={viewModel.companyName}"
             android:minHeight="48dp"
             android:hint="Company name"
             android:inputType="text" />
@@ -71,6 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:text="@={viewModel.size}"
             android:hint="Size"
             android:minHeight="48dp"
             android:inputType="number" />
@@ -89,6 +99,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:text="@={viewModel.desc}"
             android:minHeight="48dp"
             android:gravity="start|top"
             android:inputType="textMultiLine" />

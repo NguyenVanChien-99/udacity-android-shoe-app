@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ShowListFragment">
 
+<!--    I use constraint layout and linear layout because it's the requirement in udacity.
+ and it's easier for me to add floating button to the top level of the screen-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

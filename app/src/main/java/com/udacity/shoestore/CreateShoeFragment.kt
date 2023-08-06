@@ -32,6 +32,9 @@ class CreateShoeFragment : Fragment() {
 
 //        viewModel= ViewModelProvider(requireActivity()).get(ShoeListViewModel::class.java)
 
+        binding.viewModel= viewModel
+        binding.lifecycleOwner=this
+
         binding.buttonSave.setOnClickListener { view: View ->
             addShoe(binding,view)
         }
@@ -44,22 +47,7 @@ class CreateShoeFragment : Fragment() {
 
     fun addShoe(binding: FragmentCreateShoeBinding,view: View){
 
-        //TODO get from ui
-        if (binding.editShoeName.text.toString().isEmpty()){
-            Toast.makeText(this.context,"Shoe name is required",Toast.LENGTH_LONG).show()
-            return
-        }
-        if (binding.editCompanyName.text.toString().isEmpty()){
-            Toast.makeText(this.context,"Company name is required",Toast.LENGTH_LONG).show()
-            return
-        }
-
-        var size:Double=0.0
-        if( binding.editSize.text.toString().isNotEmpty()){
-            size=binding.editSize.text.toString().toDouble()
-        }
-
-        viewModel.addShoe(Shoe(binding.editShoeName.text.toString(),size,binding.editCompanyName.text.toString()   ,binding.editDescription.text.toString()))
+        viewModel.addShoe()
         Navigation.findNavController(view)
             .navigate(R.id.action_createShoeFragment_to_showListFragment)
     }
